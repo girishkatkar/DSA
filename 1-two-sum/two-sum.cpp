@@ -1,19 +1,3 @@
-// class Solution {
-// public:
-//     vector<int> twoSum(vector<int>& nums, int target) {
-//         vector<int> ans;
-//         for(vector<int>::iterator it1= nums.begin(); it1!= nums.end(); it1++){
-//             for(vector<int>::iterator it2= nums.begin(); it2!= nums.end(); it2++){
-//                 if(*it1+*it2==target) {
-//                     ans.push_back(*it1);
-//                     ans.push_back(*it2);
-                    
-
-//                 }
-//         }
-//         }
-//     return ans;}
-// };
 
 class Solution {
 public:
