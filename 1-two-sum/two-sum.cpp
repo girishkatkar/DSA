@@ -11,12 +11,10 @@ public:
                     if(nums[i]+nums[j]==target){
                         ans.push_back(i);
                         ans.push_back(j);
-                    } 
-                        
-                        
+                        return {i,j};
+                    }                
                     } 
                 }
             }
-    ans.erase(ans.begin()+2,ans.end());
-    return ans;}
+    return {};}
 };
