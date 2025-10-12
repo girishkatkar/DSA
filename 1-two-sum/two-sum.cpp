@@ -6,7 +6,7 @@ public:
     for(int i=0; i<n; i++){
         int compliment= target - nums[i];
         if (mpp.count(compliment)) return {mpp[compliment],i};
-        else mpp[nums[i]]=i;
+        mpp[nums[i]]=i;
     }
     return{};}
 };
