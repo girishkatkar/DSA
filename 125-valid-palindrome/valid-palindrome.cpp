@@ -1,16 +1,14 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
-        string newStr = "";
-        for (char i : s) {
-            if (isalnum(i)) {
-                newStr += tolower(i);
+        string news;
+        for (int i = 0; i < s.size(); i++) {
+            if (isalnum((unsigned char)s[i])) {
+                news.push_back(tolower((unsigned char)s[i]));
             }
         }
-        int l = 0, r = newStr.size() - 1;
-        while (l < r) {
-            if (newStr[l++] != newStr[r--]) return false;
-        }
-        return true;
+        string reverse_news = news;             
+        std::reverse(reverse_news.begin(), reverse_news.end());  
+        return reverse_news == news;
     }
 };
