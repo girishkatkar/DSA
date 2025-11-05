@@ -1,31 +1,32 @@
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        if(nums.size()==0) return 0;
-        if(nums.size()==1) return 1;
-        sort(nums.begin(),nums.end());
-        
-        int cnt=1;
-        int max_cnt=INT_MIN;
-        int curr=nums[0];
-        int flag=0;
-        for(int i=1; i<nums.size(); i++){
-            if (nums[i]==curr) {}
-            else if(nums[i]==curr+1) {
-                cnt++;
-                curr=nums[i];
-                max_cnt= max(cnt,max_cnt);
-                flag=1;
-            }
-            else {
-                max_cnt= max(cnt,max_cnt);
-                cnt=1;
-                curr=nums[i];
-                flag=1;
-            }
+        //for the optimal solution
+        //we need to look for quick existence check like x+1 
+        //within O(1) for that we can use unordered_set
+
+        unordered_set<int> mpp;
+        for(int i=0; i<nums.size(); i++){ //O(n)
+            mpp.insert(nums[i]);
         }
-        if (flag==0) return 1;
-        return max_cnt;
-       
-    }
+
+        //everything is stored randomly within unordered_set
+        //we can iterate through it and do quick lookups O(1)
+        int cnt=1;
+        int maxcnt=0;
+        for(auto it: mpp){
+            if (mpp.count(it-1)) {}
+            else {
+                while(mpp.count(it+cnt)) {
+                    cnt++;
+                }
+                maxcnt=max(cnt,maxcnt);
+                cnt=1;
+            }
+            
+
+            }
+            return maxcnt;
+        }
+    
 };
