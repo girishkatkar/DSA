@@ -1,19 +1,19 @@
+
 class Solution {
+private:
+    void swap(int& a, int& b){
+        int temp=a;
+        a=b;
+        b=temp;
+    }
 public:
     void rotate(vector<vector<int>>& matrix) {
-        // brute force
-        vector<vector<int>> omnitrix=matrix;
-        //two pointer
-        int n=matrix.size();
-        int y=n-1;
-        for(int i=0; i<n; i++){
-            int x=0;
-            for(int j=0; j<n; j++){
-                omnitrix[x][y]=matrix[i][j];
-                x++;
+        reverse(matrix.begin(), matrix.end());
+        for(int i=0; i<matrix.size(); i++){
+            for(int j=0; j<matrix.size(); j++){
+                if(i==j||j>i)
+                {swap(matrix[i][j],matrix[j][i]);}
             }
-            y--;
         }
-        matrix=omnitrix;
     }
 };
