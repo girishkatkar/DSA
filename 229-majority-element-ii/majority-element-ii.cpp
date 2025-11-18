@@ -1,22 +1,33 @@
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
-        //using hash_map to update frequency and checking if
-        //frequency exceeded n/3 in the same loop.
-        int n=nums.size();
-        int j=0;
-        vector<int> ret;
-        unordered_map<int,int> mpp;
-        unordered_map<int,int> ans;
+        //using Moore's Voting algo variation
+        int cnt1=0;
+        int cnt2=0;
+        int el1=INT_MIN;
+        int el2=INT_MIN;
         for(int i=0; i<nums.size(); i++){
-            mpp[nums[i]]++;
-            if (mpp[nums[i]]>n/3){
-                if (ans.count(nums[i])) {}
-                else {ans.emplace(nums[i],0);
-                      ret.push_back(nums[i]);}
+            if (cnt1==0 && nums[i]!=el2){
+                cnt1=1;
+                el1=nums[i];
             }
+            else if (cnt2==0 && nums[i]!=el1){
+                cnt2=1;
+                el2=nums[i];
+            }
+            else if (nums[i]==el1) cnt1++;
+            else if (nums[i]==el2) cnt2++;
+            else {cnt1--; cnt2--;}
         }
-    return ret;}
+        
+        vector<int> ans;
+        cnt1=0; cnt2=0;
+        for(auto it: nums){
+            if (it==el1) cnt1++;
+            if (it==el2) cnt2++;
+        }
+
+        if (cnt1>nums.size()/3) ans.push_back(el1);
+        if (cnt2>nums.size()/3) ans.push_back(el2);
+    return ans;}
 };
-//TC = O(n)
-//SC = O(n)
