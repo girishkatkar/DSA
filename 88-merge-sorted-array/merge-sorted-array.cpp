@@ -12,9 +12,7 @@ public:
                 nums1[end]=nums2[y]; end--; y--;
             }
         }
-        while(x >= 0){
-            nums1[end]=nums1[x]; end--; x--;
-        }
+        
         while(y >= 0){
             nums1[end]=nums2[y]; end--; y--;
         }
