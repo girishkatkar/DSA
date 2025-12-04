@@ -1,16 +1,19 @@
 class Solution {
 public:
     vector<int> findErrorNums(vector<int>& nums) {
-        //brute force solution
+        //better solution
+        //using hashmap
+        int n=nums.size();
+        vector<int> hashmap(n+1,0);
+        for(int i=0; i<n; i++){
+            hashmap[nums[i]]++;
+        }
+
         int repeating;
         int missing;
-        for(int i=1; i<=nums.size(); i++){
-            int count=0;
-            for(int j=0; j<nums.size(); j++){
-                if (nums[j]==i) count++;
-            }
-            if (count==2) repeating=i;
-            if (count==0) missing=i;
+        for(int i=1; i<=n; i++){
+            if (hashmap[i]==2) repeating=i;
+            if (hashmap[i]==0) missing=i;
         }
     return {repeating,missing};}
 };
