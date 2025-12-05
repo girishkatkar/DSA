@@ -19,17 +19,14 @@ int merge(vector<int>& nums, int low, int mid, int high){
     int second=mid+1;
     while(first<=mid && second<=high){
         if ((long long)nums[first]>2*(long long)nums[second]){
+            cnt+= (mid-first+1);
             second++;
         }
         else if ((long long)nums[first]<=2*(long long)nums[second]){
-            cnt+= (second-(mid+1));
             first++;
         }
     }
-    while(first<=mid){
-        cnt+= (high-(mid+1))+1;
-        first++;
-    }
+    
     while(left<=mid && right<= high){
         if(nums[left]<=nums[right]){
             temp.push_back(nums[left]);
